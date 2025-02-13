@@ -1,0 +1,14 @@
+/* Make sure the dialog has proper positioning and is above other elements */
+:host ::ng-deep .p-dialog {
+    position: fixed !important;
+    top: 50% !important;
+    left: 50% !important;
+    transform: translate(-50%, -50%) !important;
+    z-index: 1000;  /* Ensure it's on top of the table */
+  }
+  
+  .p-dialog-mask {
+    z-index: 999 !important; /* Dialog overlay */
+  }
+
+ 

@@ -1,0 +1,15 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\BAL",
+    "\\BAL\\IServices",
+    "\\BAL\\Services",
+    "\\Controllers",
+    "\\DAL",
+    "\\DAL\\DBContext",
+    "\\DAL\\Entity",
+    "\\DAL\\Entity\\DTO",
+    "\\DAL\\IRepository"
+  ],
+  "PreviewInSolutionExplorer": false
+}

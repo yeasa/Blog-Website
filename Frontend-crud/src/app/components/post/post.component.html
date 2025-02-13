@@ -1,0 +1,58 @@
+
+<!-- user nav -->
+<div class="flex gap-5 mt-5">
+    <p-menubar [model]="items" />
+    <input pInputText 
+    type="text"
+    [(ngModel)]="searchText"
+    (input)="searchPost()"
+    placeholder="Search posts by title..."
+    class="search-input"
+  />
+</div>
+
+
+
+
+<h1>{{Heading}}</h1>
+
+<!-- add user button -->
+<div class="flex gap-3" *ngIf="addPostButtonShow">
+    <button pButton type="button" label="Add Post" class="p-button-success" (click)="openAddPost()"></button>
+</div>
+
+
+<!-- cards -->
+<div class="card  grid flex-wrap gap-2 p-2 shadow-2 ">
+    <div class="flex shadow-2 post-card" *ngFor="let post of visibleCards">
+        <p-card class=" hover:shadow-6" [header]="post.title"  [style]="{ width: '360px' }">
+            <!-- <ng-template  pTemplate="header">
+                <img class="border-round-lg p-1" alt="Card" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTZpwzSe6oArdyd0IKm6--7Iy0wamlZSvBSLQ&s" />
+
+            </ng-template> -->
+            <p>{{ post.description}} </p>
+            <ng-template pTemplate="footer">
+                <div>
+                    <p-tag [value]="post.isPublished? 'Published' : 'Not Published'" [severity]="getSeverity(post.isPublished)" [icon]="post.isPublished? 'pi pi-check':'pi pi-exclamation-triangle'"/>
+                </div>
+                <div class="flex gap-3 mt-1">
+                    <button pButton *ngIf="addPostButtonShow" type="button" label="Edit Post" class="p-button-warning" (click)="openEditPost(post.id)"></button>
+                    <p-toast />
+                    <p-confirmDialog  key="deleteDialog" class="non-modal-dialog"/>
+                    <p-confirmDialog  key="publishDialog" class="non-modal-dialog"/>
+                    <div class="card flex justify-content-center gap-2">
+                        <p-button *ngIf="addPostButtonShow" (onClick)="confirmAfterDelete($event,post.id)" label="Delete" severity="danger" [outlined]="true" />
+                        <p-button *ngIf="status=='unpublished'" (onClick)="confirmAfterPublish($event,post.id)" label="publish" severity="danger" [outlined]="true" />
+                    </div>
+                    
+                </div>
+            </ng-template>
+            
+        </p-card>
+    </div>
+    
+</div>
+
+<!-- Empty div acts as a scroll trigger -->
+<div #scrollAnchor class="scroll-anchor"></div>
+

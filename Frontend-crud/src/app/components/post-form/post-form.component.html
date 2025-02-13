@@ -1,0 +1,46 @@
+
+<div class="card flex justify-content-center ">
+    <div class="surface-card w-full ">
+        <h2 class="text-center text-primary font-bold text-xl">{{ heading }}</h2>
+      
+        <form [formGroup]="postForm" (ngSubmit)="submitForm()" class="flex flex-column gap-3">
+          
+          <div class="flex flex-column">
+            <label for="title" class="font-semibold">Title</label>
+            <input pInputText id="title" type="text" formControlName="title" placeholder="Enter Title" class="p-inputtext w-full" />
+            <small *ngIf="postForm.get('title')?.invalid && postForm.get('title')?.touched" class="text-red-500">
+              required
+            </small>
+          </div>
+      
+          <div class="flex flex-column">
+            <label for="description" class="font-semibold">Description</label>
+            <textarea pInputTextarea id="description" formControlName="description" placeholder="Enter Description" rows="3" class="p-inputtextarea w-full"></textarea>
+            <small *ngIf="postForm.get('description')?.invalid && postForm.get('description')?.touched" class="text-red-500">
+              required
+            </small>
+          </div>
+      
+          <div class="flex flex-column" *ngIf="!hideFeild">
+            <label for="createdBy" class="font-semibold">Created By (ID)</label>
+            <input pInputText id="createdBy" type="number" formControlName="createdBy" placeholder="Enter Creator ID" class="p-inputtext w-full" />
+          </div>
+      
+          <div class="flex flex-column" >
+            <label for="categoryId" class="font-semibold">Category</label>
+            <p-dropdown id="categoryId" formControlName="categoryId" [options]="categoryOptions" optionLabel="label" optionValue="value" placeholder="Select Category" class="w-full"></p-dropdown>
+          </div>
+      
+          <div class="flex align-items-center gap-2">
+            <label for="isPublished" class="font-semibold">Published</label>
+            <p-checkbox formControlName="isPublished" inputId="isPublished" binary="true"></p-checkbox>
+          </div>
+      
+          <div class="flex justify-content-between mt-3">
+            <button pButton type="submit" label="Submit" icon="pi pi-check" class="p-button-success w-6 m-2" [disabled]="postForm.invalid"></button>
+            <button pButton type="button" label="Cancel" icon="pi pi-times" class="p-button-secondary w-6 m-2" (click)="cancelForm()"></button>
+          </div>
+      
+        </form>
+      </div>    
+</div>

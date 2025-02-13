@@ -1,0 +1,39 @@
+
+
+
+GET http://localhost:5228/api/User/getAllUsers
+
+###
+
+POST http://localhost:5228/api/User/getSingleUser
+content-type: application/json
+
+{
+    "id":2
+}
+
+###
+
+POST http://localhost:5228/api/User/addUser
+content-type: application/json
+
+{
+    "Name":"Hena",
+    "Password": "sbdshfuvsvjdo"
+}
+
+###
+
+PUT http://localhost:5228/api/User/updateuser/2
+content-type:application/json
+
+{
+    "Name":"sonia",
+    "Password": "sbdshfuvsvjdo"
+}
+
+###
+
+GET http://localhost:5228/api/Post/getAllPosts
+
+###

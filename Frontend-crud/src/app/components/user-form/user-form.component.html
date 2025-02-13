@@ -1,0 +1,53 @@
+<div class="card flex justify-content-center">
+    <div class="surface-card w-full">
+        <!-- <h2 class="text-center text-primary font-bold text-xl">{{ heading }}</h2> -->
+      
+        <form [formGroup]="userForm" (ngSubmit)="submitForm()" class="flex flex-column gap-3">
+          
+          <div class="flex flex-column">
+            <label for="name" class="font-semibold">Name</label>
+            <input pInputText id="name" type="text" formControlName="name" placeholder="Enter Name" class="p-inputtext w-full" />
+            <small *ngIf="userForm.get('name')?.invalid && userForm.get('name')?.touched" class="text-red-500">
+              required
+            </small>
+          </div>
+      
+          <div class="flex flex-column">
+            <label for="email" class="font-semibold">Email</label>
+            <input pInputText id="email" type="email" formControlName="email" placeholder="Enter Email" class="p-inputtext w-full" />
+            <small *ngIf="userForm.get('email')?.invalid && userForm.get('email')?.touched" class="text-red-500">
+              required & must be valid email
+            </small>
+          </div>
+      
+          <div *ngIf="!hideField" class="flex flex-column">
+          <label *ngIf="hideField" for="password" class="font-semibold">Password</label>
+          <p-password id="password" formControlName="password" placeholder="Enter Password" class="p-inputtext w-full" toggleMask="true" feedback="false"/>
+          <small *ngIf="userForm.get('password')?.invalid && userForm.get('password')?.touched" class="text-red-500">
+            required 
+          </small>
+          </div>
+      
+          <div class="flex flex-column">
+            <label for="phone" class="font-semibold">Phone Number</label>
+            <input pInputText id="phone" type="text" formControlName="phone" placeholder="Enter Phone Number" class="p-inputnumber w-full" />
+            <small *ngIf="userForm.get('phone')?.invalid && userForm.get('phone')?.touched" class="text-red-500">
+              required & must be a valid phone number
+            </small>
+          </div>
+      
+          <div  class="flex align-items-center gap-2">
+            <label for="isActive" class="font-semibold">Active</label>
+            <p-checkbox formControlName="isActive" inputId="isActive" binary="true"></p-checkbox>
+          </div>
+      
+          <div class="flex justify-content-between mt-3">
+            
+            <button pButton type="submit" label="Submit" icon="pi pi-check" class="p-button-success w-6 m-2" [disabled]="userForm.invalid"></button>
+            <button pButton type="button" label="Cancel" icon="pi pi-times" class="p-button-secondary w-6 m-2" (click)="cancelForm()"></button>
+          </div>
+      
+        </form>
+    </div>    
+</div>
+
